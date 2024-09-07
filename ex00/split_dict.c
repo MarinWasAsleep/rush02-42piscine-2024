@@ -6,7 +6,7 @@
 /*   By: imeulema <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 16:37:22 by imeulema          #+#    #+#             */
-/*   Updated: 2024/09/07 16:51:41 by imeulema         ###   ########.fr       */
+/*   Updated: 2024/09/07 18:42:49 by imeulema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ char	**split_dict(char *str)
 	int	index;
 	char **dict;
 
-	dict = (char **) malloc(get_dict_size(str) * sizeof(char *));
+	dict = (char **) malloc((get_dict_size(str) + 1) * sizeof(char *));
 	if (dict == NULL)
 		return (NULL);
 	i = 0;
@@ -67,4 +67,6 @@ char	**split_dict(char *str)
 		dict[index][j] = 0;
 		index++;
 	}
+	dict[index] = NULL;
+	return (dict);
 }
