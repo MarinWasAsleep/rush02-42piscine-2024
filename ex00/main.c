@@ -6,7 +6,7 @@
 /*   By: imeulema <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 13:46:06 by imeulema          #+#    #+#             */
-/*   Updated: 2024/09/07 15:44:57 by imeulema         ###   ########.fr       */
+/*   Updated: 2024/09/07 17:26:43 by imeulema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ int	main(int ac, char **av)
 	// du nombre
 	i = 0;
 	minus = 0;
+	len = 0;
 	while ((str[i] >= 9 && str[i] <= 13) || str[i] == ' ')
 		i++;
 	while (str[i] == '+' || str[i] == '-')
