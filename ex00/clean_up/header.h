@@ -6,7 +6,7 @@
 /*   By: imeulema <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/08 19:04:33 by imeulema          #+#    #+#             */
-/*   Updated: 2024/09/08 19:38:18 by imeulema         ###   ########.fr       */
+/*   Updated: 2024/09/08 21:01:32 by imeulema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,18 @@ typedef struct s_dict
 }	t_dict;
 
 t_dict	*split_dict(char *str);
+void	block_analysis(char *str, int bloc_num, t_dict *dict);
+void	write_log_char(t_dict *dict, char c, int size);
+void	write_log_str(t_dict *dict, char *str, int size);
+void	write_log_tens(t_dict *dict, char c, int size);
+void	write_numbers(char **tab, t_dict *dict);
 char	**get_number(char *str);
 char	*ft_parse_dict(char *dict_path);
 int	skip_whitespaces(char *str);
+int	retrieve_dict_size(t_dict *dict);
 int	get_len(char *str, int i);
 int	get_tab_size(int len);
+int	get_dict_size(char *str);
+int	ft_strcmp(char *s1, char *s2);
 
 #endif
