@@ -6,12 +6,11 @@
 /*   By: imeulema <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/08 18:55:51 by imeulema          #+#    #+#             */
-/*   Updated: 2024/09/08 20:01:31 by imeulema         ###   ########.fr       */
+/*   Updated: 2024/09/08 22:54:34 by imeulema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
-#include <stdio.h>
 
 int	skip_whitespaces(char *str)
 {
@@ -57,6 +56,5 @@ int	get_tab_size(int len)
 		tab_size = len / 3;
 	else
 		tab_size = len / 3 + 1;
-	printf("Size to allocate for tab: %d\n", tab_size);
 	return (tab_size);
 }

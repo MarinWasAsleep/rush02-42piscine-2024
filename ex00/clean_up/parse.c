@@ -6,12 +6,11 @@
 /*   By: dgeinoz <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 14:27:04 by dgeinoz           #+#    #+#             */
-/*   Updated: 2024/09/08 19:31:38 by imeulema         ###   ########.fr       */
+/*   Updated: 2024/09/08 22:55:29 by imeulema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <fcntl.h>
-#include <stdio.h>
 #include <unistd.h>
 #include <stdlib.h>
 
@@ -55,11 +54,3 @@ char	*ft_parse_dict(char *dict_path)
 	close(file);
 	return (dict);
 }
-/*
-int main(int ac, char **av)
-{
-	(void)ac;
-	ft_parse_dict(av[1]);
-	return (0);
-}
-*/

@@ -5,4 +5,3 @@ compile:
 
 fclean:
 	rm rush-02
-

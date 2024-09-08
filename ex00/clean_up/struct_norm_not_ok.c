@@ -6,25 +6,13 @@
 /*   By: imeulema <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/08 11:00:12 by imeulema          #+#    #+#             */
-/*   Updated: 2024/09/08 22:16:49 by imeulema         ###   ########.fr       */
+/*   Updated: 2024/09/08 22:56:08 by imeulema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include <unistd.h>
 #include "header.h"
-
-#include <stdio.h>
-
-int	ft_strlen(char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i])
-		i++;
-	return (i);
-}
 
 int	is_alpha(char c)
 {
@@ -68,7 +56,6 @@ void	print_results(t_dict *dict)
 	i = 0;
 	while (dict[i].log != NULL)
 	{
-		printf("Entry [%d] has index \"%s\" of size %d and log \"%s\" of size %d\n", i, dict[i].index, dict[i].index_size, dict[i].log, dict[i].log_size);
 		i++;
 	}
 }

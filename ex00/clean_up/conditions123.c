@@ -6,7 +6,7 @@
 /*   By: labensou <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/08 19:13:27 by labensou          #+#    #+#             */
-/*   Updated: 2024/09/08 22:27:19 by imeulema         ###   ########.fr       */
+/*   Updated: 2024/09/08 22:38:32 by imeulema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	print_teen(char b, char c, t_dict *dict)
 	write_log_str(dict, teen, size);
 }
 
-void	block_analysis(char **tab, int bloc_num, t_dict *dict)
+void	block_analysis(char **tab, t_dict *dict)
 {
 	char	teen[3];
 	int		size;
@@ -79,6 +79,6 @@ void	block_analysis(char **tab, int bloc_num, t_dict *dict)
 			write(1, "-", 1);
 		if (tab[i][2] >= '1' && tab[i][2] <= '9')
 			write_log_char(dict, tab[i][2], size);
-		print_trans(bloc_num, dict, tab);
+		print_trans(i, dict, tab);
 	}
 }	

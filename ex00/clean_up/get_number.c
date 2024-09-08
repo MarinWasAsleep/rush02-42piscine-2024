@@ -6,12 +6,11 @@
 /*   By: imeulema <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/08 15:46:58 by imeulema          #+#    #+#             */
-/*   Updated: 2024/09/08 21:49:25 by imeulema         ###   ########.fr       */
+/*   Updated: 2024/09/08 22:54:19 by imeulema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
-#include <stdio.h>
 
 int	skip_whitespaces(char *str);
 int	get_len(char *str, int i);
@@ -70,7 +69,6 @@ void	fill_blocks(char **tab, char *str, int i, int len)
 			j++;
 		}
 		tab[index][j] = 0;
-		printf("Finished with tab[%d], ready to access tab[%d]\n", index, index + 1);
 		index++;
 	}
 	tab[index] = NULL;
