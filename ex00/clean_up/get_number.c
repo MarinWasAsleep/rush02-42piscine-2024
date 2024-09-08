@@ -6,7 +6,7 @@
 /*   By: imeulema <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/08 15:46:58 by imeulema          #+#    #+#             */
-/*   Updated: 2024/09/08 20:06:08 by imeulema         ###   ########.fr       */
+/*   Updated: 2024/09/08 21:49:25 by imeulema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ void	fill_blocks(char **tab, char *str, int i, int len)
 		printf("Finished with tab[%d], ready to access tab[%d]\n", index, index + 1);
 		index++;
 	}
+	tab[index] = NULL;
 }
 
 char	**get_number(char *str)
@@ -87,7 +88,7 @@ char	**get_number(char *str)
 		return (NULL);
 	len = get_len(str, i);
 	tab_size = get_tab_size(len);
-	tab = (char **) malloc(tab_size * sizeof(char *));
+	tab = (char **) malloc((tab_size + 1) * sizeof(char *));
 	if (tab == NULL)
 		return (NULL);
 	if (allocate_tabs(tab, tab_size) == 1)

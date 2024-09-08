@@ -6,7 +6,7 @@
 /*   By: imeulema <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/08 19:04:33 by imeulema          #+#    #+#             */
-/*   Updated: 2024/09/08 21:01:32 by imeulema         ###   ########.fr       */
+/*   Updated: 2024/09/08 22:17:31 by imeulema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ void	write_log_tens(t_dict *dict, char c, int size);
 void	write_numbers(char **tab, t_dict *dict);
 char	**get_number(char *str);
 char	*ft_parse_dict(char *dict_path);
+char	*get_trans_str(int index, int **tab);
 int	skip_whitespaces(char *str);
 int	retrieve_dict_size(t_dict *dict);
 int	get_len(char *str, int i);

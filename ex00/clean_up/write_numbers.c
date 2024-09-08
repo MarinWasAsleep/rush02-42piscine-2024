@@ -6,7 +6,7 @@
 /*   By: imeulema <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/08 20:35:02 by imeulema          #+#    #+#             */
-/*   Updated: 2024/09/08 20:47:25 by imeulema         ###   ########.fr       */
+/*   Updated: 2024/09/08 22:23:48 by imeulema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ int	retrieve_dict_size(t_dict *dict)
 
 void	write_numbers(char **tab, t_dict *dict)
 {
+	/*
 	int	i;
 
 	i = 0;
@@ -32,4 +33,6 @@ void	write_numbers(char **tab, t_dict *dict)
 		block_analysis(tab[i], i, dict);
 		i++;
 	}
+	*/
+	block_analysis(tab, dict);
 }

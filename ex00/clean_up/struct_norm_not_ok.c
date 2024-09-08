@@ -6,7 +6,7 @@
 /*   By: imeulema <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/08 11:00:12 by imeulema          #+#    #+#             */
-/*   Updated: 2024/09/08 20:33:50 by imeulema         ###   ########.fr       */
+/*   Updated: 2024/09/08 22:16:49 by imeulema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,26 +149,10 @@ t_dict	*split_dict(char *str)
 			dict[entry] = get_log(dict[entry], str, i);
 			i += dict[entry].log_size;
 		}
-		else if (str[i] == '\n' && str[i + 1] != '\n')
-		{
-			entry++;
-			i++;
-		}
 		else
 			i++;
 	}
 	dict[entry].log = NULL;
 	dict[entry].log_size = get_dict_size(str);
-	//print_results(dict);
-	/*
-	entry = 0;
-	while (dict[entry].log != NULL)
-	{
-		free(dict[entry].index);
-		free(dict[entry].log);
-		entry++;
-	}
-	free(dict);
-	*/
 	return (dict);
 }
