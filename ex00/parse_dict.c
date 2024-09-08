@@ -6,7 +6,7 @@
 /*   By: dgeinoz <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 14:27:04 by dgeinoz           #+#    #+#             */
-/*   Updated: 2024/09/08 17:56:00 by dgeinoz          ###   ########.fr       */
+/*   Updated: 2024/09/08 19:30:01 by dgeinoz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,18 @@
 #include <stdio.h>
 #include <unistd.h>
 #include <stdlib.h>
+
+void	ft_putstr(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		write(1, &str[i], 1);
+		i++;
+	}
+}
 
 char	*ft_parse_dict(char *dict_path)
 {
@@ -26,7 +38,7 @@ char	*ft_parse_dict(char *dict_path)
 	file = open(dict_path, O_RDONLY);
 	if (file < 0)
 	{
-		printf("Error in opening the file");
+		ft_putstr("Error in opening the file");
 		return (dict);
 	}
 	while (read(file, read_seg, 1))
@@ -36,7 +48,7 @@ char	*ft_parse_dict(char *dict_path)
 	file = open(dict_path, O_RDONLY);
 	if (file < 0)
 	{
-		printf("Error in opening the file");
+		ft_putstr("Error in opening the file");
 		return (dict);
 	}
 	read(file, dict, c_count);
