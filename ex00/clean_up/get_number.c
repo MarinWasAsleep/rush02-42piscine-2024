@@ -6,11 +6,12 @@
 /*   By: imeulema <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/08 15:46:58 by imeulema          #+#    #+#             */
-/*   Updated: 2024/09/08 19:03:59 by imeulema         ###   ########.fr       */
+/*   Updated: 2024/09/08 20:06:08 by imeulema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
+#include <stdio.h>
 
 int	skip_whitespaces(char *str);
 int	get_len(char *str, int i);
@@ -50,20 +51,26 @@ int	fill_frst_block(char **tab, int len, char *str, int i)
 	return (i);
 }
 
-void	fill_blocks(char **tab, char *str, int i, int index)
+void	fill_blocks(char **tab, char *str, int i, int len)
 {
+	int	index;
 	int	j;
 
-	while (str[i] >= '0' && str[i] <= '9')
+	if (len % 3 == 0)
+		index = 1;
+	else
+		index = 0;
+	while (str[i] >= '0' && str[i] <= '9' && index < get_tab_size(len))
 	{
 		j = 0;
 		while (j < 3)
 		{
-			tab[inbdex][j] = str[i];
+			tab[index][j] = str[i];
 			i++;
 			j++;
 		}
 		tab[index][j] = 0;
+		printf("Finished with tab[%d], ready to access tab[%d]\n", index, index + 1);
 		index++;
 	}
 }
@@ -87,11 +94,7 @@ char	**get_number(char *str)
 		return (NULL);
 	i -= len;
 	if (len % 3 != 0)
-	{
 		i = fill_frst_block(tab, len, str, i);
-		fill_blocks(tab, str, i, 1);
-	}
-	else
-		fill_blocks(tab, str, i, 0);
+	fill_blocks(tab, str, i, len);
 	return (tab);
 }
