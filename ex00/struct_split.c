@@ -6,7 +6,7 @@
 /*   By: imeulema <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/08 11:00:12 by imeulema          #+#    #+#             */
-/*   Updated: 2024/09/08 12:46:06 by imeulema         ###   ########.fr       */
+/*   Updated: 2024/09/08 15:24:19 by imeulema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	get_size(char *str, int i, int func)
 {
 	int	count;
 
-	count = 1;
+	count = 0;
 	if (func == 0)
 	{
 		while (str[i] != ':')
@@ -78,9 +78,9 @@ t_dict	get_index(t_dict entry, char *str, int i)
 	int	j;
 
 	entry.index_size = get_size(str, i, 0);
-	entry.index = (char *) malloc(entry.index_size * sizeof(char));
+	entry.index = (char *) malloc((entry.index_size + 1) * sizeof(char));
 	j = 0;
-	while (j + 1 < entry.index_size)
+	while (j < entry.index_size)
 	{
 		entry.index[j] = str[i];
 		i++;
@@ -95,9 +95,9 @@ t_dict	get_log(t_dict entry, char *str, int i)
 	int	j;
 
 	entry.log_size = get_size(str, i, 1);
-	entry.log = (char *) malloc(entry.log_size * sizeof(char));
+	entry.log = (char *) malloc((entry.log_size + 1) * sizeof(char));
 	j = 0;
-	while (j + 1 < entry.log_size)
+	while (j < entry.log_size)
 	{
 		entry.log[j] = str[i];
 		i++;
@@ -141,12 +141,12 @@ t_dict	*split_dict(char *str)
 		if (str[i] >= '0' && str[i] <= '9')
 		{
 			dict[entry] = get_index(dict[entry], str, i);
-			i += ft_strlen(dict[entry].index);
+			i += dict[entry].index_size;
 		}
 		else if (is_alpha(str[i]))
 		{
 			dict[entry] = get_log(dict[entry], str, i);
-			i += ft_strlen(dict[entry].log);
+			i += dict[entry].log_size;
 		}
 		else if (str[i] == '\n' && str[i + 1] != '\n')
 		{
@@ -157,7 +157,9 @@ t_dict	*split_dict(char *str)
 			i++;
 	}
 	dict[entry].log = NULL;
-	print_results(dict);
+	dict[entry].log_size = get_dict_size(str);
+	//print_results(dict);
+	/*
 	entry = 0;
 	while (dict[entry].log != NULL)
 	{
@@ -166,5 +168,6 @@ t_dict	*split_dict(char *str)
 		entry++;
 	}
 	free(dict);
+	*/
 	return (dict);
 }
