@@ -6,7 +6,7 @@
 /*   By: dgeinoz <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 14:27:04 by dgeinoz           #+#    #+#             */
-/*   Updated: 2024/09/07 18:48:48 by dgeinoz          ###   ########.fr       */
+/*   Updated: 2024/09/08 17:56:00 by dgeinoz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,44 +15,39 @@
 #include <unistd.h>
 #include <stdlib.h>
 
-int main(int ac, char **av)
+char	*ft_parse_dict(char *dict_path)
 {
-	int file;
-	int read_;
-	int c_count;
-	char *dict;
-	char read_seg[2];
-	int i;
-	
-	read_seg[1] = '\0';
+	int		file;
+	int		c_count;
+	char	*dict;
+	char	read_seg[1];
+
 	c_count = 0;
-	read_ = 1;
-	file = open("numbers.dict", O_RDONLY);
+	file = open(dict_path, O_RDONLY);
 	if (file < 0)
 	{
 		printf("Error in opening the file");
-		return (0);
+		return (dict);
 	}
-	while (read_)
-	{
-		read_ = read(file, read_seg, 1);
-		c_count += read_;
-	}	
+	while (read(file, read_seg, 1))
+		c_count += 1;
 	close(file);
 	dict = (char *)malloc(sizeof(char) * (c_count + 1));
-	
-	file = open("numbers.dict", O_RDONLY);
-	i = 0;
-	while (i <= c_count)
+	file = open(dict_path, O_RDONLY);
+	if (file < 0)
 	{
-		read_ = read(file, read_seg, 1);
-		dict[i] = read_seg[0];
-		i++;
+		printf("Error in opening the file");
+		return (dict);
 	}
+	read(file, dict, c_count);
 	close(file);
-	dict[i] = '\0';
-
-	printf("%d\n", c_count);
-	printf("%s", dict);
+	return (dict);
+}
+/*
+int main(int ac, char **av)
+{
+	(void)ac;
+	ft_parse_dict(av[1]);
 	return (0);
 }
+*/
