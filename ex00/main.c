@@ -6,23 +6,20 @@
 /*   By: imeulema <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 13:46:06 by imeulema          #+#    #+#             */
-/*   Updated: 2024/09/07 17:26:43 by imeulema         ###   ########.fr       */
+/*   Updated: 2024/09/08 15:29:14 by imeulema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 #include <stdlib.h>
 #include <fcntl.h>
+#include "header.h"
 
-int	ft_strlen(char *str)
-{
-	int	i;
+#include <stdio.h>
 
-	i = 0;
-	while (str[i])
-		i++;
-	return (i);
-}
+void	print_logs(t_dict *dict, char **tab, int nb_of_elements_in_tab);
+t_dict	*split_dict(char *str);
+int		ft_strlen(char *str);
 
 void	print_result(char **tab, int nb_of_elements_in_tab)
 {
@@ -115,22 +112,25 @@ int	main(int ac, char **av)
 		return (1);
 	}
 
-	// determine le nombre de characteres a allouer pour notre premiere string
-	// plus laisse de la place pour \0
-	int nb_of_elements_in_first_string;
-	if (len % 3 == 0)
-		nb_of_elements_in_first_string = 4;
-	else
-		nb_of_elements_in_first_string = len % 3 + 1;
-	tab[0] = (char *) malloc(nb_of_elements_in_first_string * sizeof(char));
-	if (tab[0] == NULL)
-	{
-		write(1, "Error\n", 6);
-		return (1);
-	}
+	int tab_0_size = len % 3;
 
-	// alloue 4 characteres aux strings suivantes (3 chiffres + \0)
-	int	j = 1;
+	tab[0] = (char *) malloc(4 * sizeof(char));
+	int j = 0;
+	i -= len;
+	while (j < 3 - tab_0_size)
+	{
+		tab[0][j] = '0';
+		j++;
+	}
+	while (j < 3)
+	{
+		tab[0][j] = str[i];
+		j++;
+		i++;
+	}
+	tab[0][j] = 0;
+	
+	j = 1;
 	while (j < nb_of_elements_in_tab)
 	{
 		tab[j] = (char *) malloc(4 * sizeof(char));
@@ -144,36 +144,74 @@ int	main(int ac, char **av)
 
 	// peuple les strings avec les valeurs passees par str
 	int	index;
-	i -= len;
 	j = 0;
-	while (str[i] >= '0' && str[i] <= '9') // probablement pas necessaire comme boucle
+	index = 1;
+	while (index < nb_of_elements_in_tab)
 	{
-		while (j + 1 < nb_of_elements_in_first_string) // + 1 car le nb d'elements laisse la place pour le \0
+		j = 0;
+		while (j < 3)
 		{
-			tab[0][j] = str[i];
+			tab[index][j] = str[i];
 			i++;
 			j++;
 		}
-		tab[0][j] = 0;
-		index = 1;
-		while (index < nb_of_elements_in_tab)
-		{
-			j = 0;
-			while (j < 3)
-			{
-				tab[index][j] = str[i];
-				i++;
-				j++;
-			}
-			tab[index][j] = 0;
-			index++;
-		}
+		tab[index][j] = 0;
+		index++;
 	}
 
-	print_result(tab, nb_of_elements_in_tab);
+	//print_result(tab, nb_of_elements_in_tab);
 	rev_tab(tab, nb_of_elements_in_tab);
 	print_result(tab, nb_of_elements_in_tab);
 	
+
+
+
+	int file;
+	int read_;
+	int c_count;
+	char *dict;
+	char read_seg[2];
+	t_dict *full_dict;
+	int x;
+
+	read_seg[1] = '\0';
+	c_count = 0;
+	read_ = 1;
+	file = open("numbers.dict", O_RDONLY);
+	if (file < 0)
+	{
+		printf("Error in opening the file");
+		return (0);
+	}
+	while (read_)
+	{
+		read_ = read(file, read_seg, 1);
+		c_count += read_;
+	}
+	close(file);
+	dict = (char *)malloc(sizeof(char) * (c_count + 1));
+
+	file = open("numbers.dict", O_RDONLY);
+	x = 0;
+	while (x <= c_count)
+	{
+		read_ = read(file, read_seg, 1);
+		dict[x] = read_seg[0];
+		x++;
+	}
+	close(file);
+	dict[x] = '\0';
+
+	full_dict = split_dict(dict);
+	print_logs(full_dict, tab, nb_of_elements_in_tab);
+	free(dict);
+	//printf("%d\n", c_count);
+	//printf("%s", dict);
+	return (0);
+
+
+
+
 	// libere la memoire allouee
 	index = 0;
 	while (index < nb_of_elements_in_tab)
