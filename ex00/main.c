@@ -6,7 +6,7 @@
 /*   By: imeulema <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 13:46:06 by imeulema          #+#    #+#             */
-/*   Updated: 2024/09/08 15:29:14 by imeulema         ###   ########.fr       */
+/*   Updated: 2024/09/08 17:44:40 by imeulema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 void	print_logs(t_dict *dict, char **tab, int nb_of_elements_in_tab);
 t_dict	*split_dict(char *str);
 int		ft_strlen(char *str);
+void	block_analysis(char a, char b, char c, int bloc_num, t_dict *dict);
 
 void	print_result(char **tab, int nb_of_elements_in_tab)
 {
@@ -160,7 +161,7 @@ int	main(int ac, char **av)
 	}
 
 	//print_result(tab, nb_of_elements_in_tab);
-	rev_tab(tab, nb_of_elements_in_tab);
+	//rev_tab(tab, nb_of_elements_in_tab);
 	print_result(tab, nb_of_elements_in_tab);
 	
 
@@ -203,11 +204,17 @@ int	main(int ac, char **av)
 	dict[x] = '\0';
 
 	full_dict = split_dict(dict);
+/*	x = 0;
+	while (x < nb_of_elements_in_tab)
+	{
+		block_analysis(tab[x][0], tab[x][1], tab[x][2], x + 1, full_dict);
+		x++;
+	}*/
 	print_logs(full_dict, tab, nb_of_elements_in_tab);
 	free(dict);
 	//printf("%d\n", c_count);
 	//printf("%s", dict);
-	return (0);
+	//return (0);
 
 
 
