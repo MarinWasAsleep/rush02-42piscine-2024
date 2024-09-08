@@ -6,7 +6,7 @@
 /*   By: imeulema <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/08 13:59:44 by imeulema          #+#    #+#             */
-/*   Updated: 2024/09/08 15:25:15 by imeulema         ###   ########.fr       */
+/*   Updated: 2024/09/08 18:13:54 by imeulema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,24 @@
 #include <unistd.h>
 #include "header.h"
 
+#include <stdio.h>
+
 int	ft_strcmp(char *s1, char *s2)
 {
 	int	i;
 
+	printf("Comparing %s and %s\n", s1, s2);
 	i = 0;
 	while (s1[i] || s2[i])
 	{
 		if (s1[i] != s2[i])
-			return (s1[i] - s2[1]);
+		{
+			printf("Difference found inside string\n");
+			return (s1[i] - s2[i]);
+		}
 		i++;
 	}
+	printf("No difference found inside string\n");
 	return (s1[i] - s2[i]);
 }
 
@@ -103,8 +110,8 @@ void	print_logs(t_dict *dict, char **tab, int nb_of_elements_in_tab)
 	int	dict_size;
 
 	dict_size = get_dict_size2(dict);
-	i = nb_of_elements_in_tab - 1;
-	while (i >= 0)
+	i = 0;
+	while (i < nb_of_elements_in_tab)
 	{
 		if (tab[i][0] != 0)
 		{
